@@ -29,10 +29,11 @@ def download(dom, x, className):
     print("download->", videoName)
     videoName = videoName.replace(' ', '').replace(
         "/", "-")  # 将空格替换掉，如果有空格，ffmpeg会报错
-    m3u8_url = dom['videoContent']['mp4'].replace(
-        '.mp4', '.m3u8').replace("mpv.videocc.net", 'hls.videocc.net')
-    if x == 6:
-        m3u8_url = "https://hls.videocc.net/ef4825bc7e/2/ef4825bc7e985694a33c2a434c093872_1.m3u8"
+    # m3u8_url = dom['videoContent']['mp4'].replace(
+    #     '.mp4', '.m3u8').replace("mpv.videocc.net", 'hls.videocc.net')
+    # if x == 6:
+    #     m3u8_url = "https://hls.videocc.net/ef4825bc7e/2/ef4825bc7e985694a33c2a434c093872_1.m3u8"
+    m3u8_url = "https://hls.videocc.net/ef4825bc7e/e/{}_1.m3u8".format(dom['videoContent']['vid'].replace("_e", ""))
     m3u8_data = requests.get(m3u8_url).text
     # 提取m3u8里边的ts文件的url
     ts_urls = re.findall('(http.*?\.ts)', m3u8_data)
@@ -115,7 +116,6 @@ if __name__ == '__main__':
         menu = requests.get(url=url, headers=headers, cookies=cookies).json()
         for tmp in menu:
             x += 1  # 计数
-            if x > 17:
-                pool.apply_async(download, args=(tmp, x, className,))
+            pool.apply_async(download, args=(tmp, x, className,))
     pool.close()
     pool.join()
