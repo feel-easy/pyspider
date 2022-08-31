@@ -7,14 +7,15 @@ from tqdm import tqdm  # 为了好看，加上进度条
 from time import sleep
 from multiprocessing.dummy import Pool  # 多线程的
 
-
-s = '_uab_collina=166183974175643687934375; Hm_lvt_92a5d4e0ba2140a5aa6001c88a65ef97=1661839705; looyu_id=2074544c1b3b028ddcf9b13e9771992a_20004236%3A1; Hm_lvt_5253ded03765ddd71ca75302ab1e548d=1661839705; _sensors_dapeng_anonymous_uuid=%22ccf1b1fe-934f-45e2-a84a-7cc0fda13830%22; _pk_ses.3.fd4d=1; _uab_collina=166184014501702175629925; _99_mon=%5B0%2C0%2C0%5D; _sensors_dapeng_login_id=%22k09rdwx4ap%22; Hm_lpvt_92a5d4e0ba2140a5aa6001c88a65ef97=1661844614; redirect_url=https://www.dapengjiaoyu.cn/dp-course/secure/course/playback?courseId=ijmiw8ve&stageId=e5acb4e292b741049ddcc7965f6da466&v=ef4825bc7eca11d196b87c5b185ebee8_e&cid=3c87c197009e4252ae7d1758ce9ad34b&faid=ccf1b1fe-934f-45e2-a84a-7cc0fda13830&said=ccf1b1fe-934f-45e2-a84a-7cc0fda13830&fuid=k09rdwx4ap&suid=&d=0&suu=a5add414-dff4-44d7-aef4-831ba944e9d7&suc=1; dptoken=3c1d2a05-cf0e-4762-9d02-65b5eda19a20; userinfo={%22userId%22:%22k09rdwx4ap%22%2C%22nickname%22:%22%E6%97%B6%E7%8E%96026%22%2C%22avatar%22:%22https://image.dapengjiaoyu.com/images/avatars/5avatar.jpg%22%2C%22dpAccount%22:%22dp79241393%22%2C%22mobile%22:%2215887442156%22%2C%22loginName%22:%22%E6%97%B6%E7%8E%96026%22%2C%22studentSatusId%22:null}; userCloseWxBinding=true; Hm_lpvt_5253ded03765ddd71ca75302ab1e548d=1661847559; looyu_20004236=v%3A2074544c1b3b028ddcf9b13e9771992a%2Cref%3A%2Cr%3A%2Cmon%3A//m6815.talk99.cn/monitor%2Cp0%3Ahttps%253A//www.dapengjiaoyu.cn/details/course%253Ftype%253DVIP%2526courseId%253Dijmiw8ve%2526faid%253D0853c508-9328-47e6-b65a-7b155523e509%2526said%253D0853c508-9328-47e6-b65a-7b155523e509%2526fuid%253Dkewhtyxxuk%2526suid%253D%2526d%253D0%2526suu%253D51898ffd-988e-4455-8d8e-4158660db282%2526suc%253D1%2526state%253DLIVING; _pk_id.3.fd4d=fb479c1886f88dca.1661839705.1.1661849149.1661839705.'
+#  
+cookie = '_uab_collina=166183974175643687934375; Hm_lvt_92a5d4e0ba2140a5aa6001c88a65ef97=1661839705; looyu_id=2074544c1b3b028ddcf9b13e9771992a_20004236%3A1; Hm_lvt_5253ded03765ddd71ca75302ab1e548d=1661839705; _sensors_dapeng_anonymous_uuid=%22ccf1b1fe-934f-45e2-a84a-7cc0fda13830%22; _pk_ses.3.fd4d=1; _uab_collina=166184014501702175629925; _99_mon=%5B0%2C0%2C0%5D; _sensors_dapeng_login_id=%22k09rdwx4ap%22; Hm_lpvt_92a5d4e0ba2140a5aa6001c88a65ef97=1661844614; redirect_url=https://www.dapengjiaoyu.cn/dp-course/secure/course/playback?courseId=ijmiw8ve&stageId=e5acb4e292b741049ddcc7965f6da466&v=ef4825bc7eca11d196b87c5b185ebee8_e&cid=3c87c197009e4252ae7d1758ce9ad34b&faid=ccf1b1fe-934f-45e2-a84a-7cc0fda13830&said=ccf1b1fe-934f-45e2-a84a-7cc0fda13830&fuid=k09rdwx4ap&suid=&d=0&suu=a5add414-dff4-44d7-aef4-831ba944e9d7&suc=1; dptoken=3c1d2a05-cf0e-4762-9d02-65b5eda19a20; userinfo={%22userId%22:%22k09rdwx4ap%22%2C%22nickname%22:%22%E6%97%B6%E7%8E%96026%22%2C%22avatar%22:%22https://image.dapengjiaoyu.com/images/avatars/5avatar.jpg%22%2C%22dpAccount%22:%22dp79241393%22%2C%22mobile%22:%2215887442156%22%2C%22loginName%22:%22%E6%97%B6%E7%8E%96026%22%2C%22studentSatusId%22:null}; userCloseWxBinding=true; Hm_lpvt_5253ded03765ddd71ca75302ab1e548d=1661847559; looyu_20004236=v%3A2074544c1b3b028ddcf9b13e9771992a%2Cref%3A%2Cr%3A%2Cmon%3A//m6815.talk99.cn/monitor%2Cp0%3Ahttps%253A//www.dapengjiaoyu.cn/details/course%253Ftype%253DVIP%2526courseId%253Dijmiw8ve%2526faid%253D0853c508-9328-47e6-b65a-7b155523e509%2526said%253D0853c508-9328-47e6-b65a-7b155523e509%2526fuid%253Dkewhtyxxuk%2526suid%253D%2526d%253D0%2526suu%253D51898ffd-988e-4455-8d8e-4158660db282%2526suc%253D1%2526state%253DLIVING; _pk_id.3.fd4d=fb479c1886f88dca.1661839705.1.1661849149.1661839705.'
 className =  "影楼设计行业实战模块"
+pageUrl = "https://www.dapengjiaoyu.cn/dp-course/api/courses/stages/e5acb4e292b741049ddcc7965f6da466/chapters?courseId=ijmiw8ve&size=16&page="
 
 # 处理cookies的方式
 cookies = {}
-s = s.encode('utf-8').decode('latin1')  # 如果cookies有中文，这样处理编码就不会报错了
-for k_v in s.split(';'):
+cookie = cookie.encode('utf-8').decode('latin1')  # 如果cookies有中文，这样处理编码就不会报错了
+for k_v in cookie.split(';'):
     k, v = k_v.split('=', 1)
     cookies[k.strip()] = v.replace('"', '')
 headers = {
@@ -30,15 +31,14 @@ def download(dom, x):
     print("download->", videoName)
     videoName = videoName.replace(' ', '').replace(
         "/", "-")  # 将空格替换掉，如果有空格，ffmpeg会报错
-    # m3u8_url = dom['videoContent']['mp4'].replace(
-    #     '.mp4', '.m3u8').replace("mpv.videocc.net", 'hls.videocc.net')
-    # if x == 6:
-    #     m3u8_url = "https://hls.videocc.net/ef4825bc7e/2/ef4825bc7e985694a33c2a434c093872_1.m3u8"
-    m3u8_url = "https://hls.videocc.net/ef4825bc7e/e/{}_1.m3u8".format(dom['videoContent']['vid'].replace("_e", ""))
+    m3u8_url = dom['videoContent']['mp4'].replace(
+        '.mp4', '.m3u8').replace("mpv.videocc.net", 'hls.videocc.net')
+    if not m3u8_url.endswith(".m3u8"):
+        m3u8_url = "https://hls.videocc.net/ef4825bc7e/e/{}_1.m3u8".format(dom['videoContent']['vid'].replace("_e", ""))
     m3u8_data = requests.get(m3u8_url).text
     # 提取m3u8里边的ts文件的url
     ts_urls = re.findall('(http.*?\.ts)', m3u8_data)
-    tempName = os.getcwd() + "/temp/" + str(x)
+    tempName = os.getcwd() + "/temp_" + str(x)
     # 下载每一个ts文件
     for ts_url in tqdm(ts_urls):
         # 给下载的ts命名
@@ -112,11 +112,13 @@ if __name__ == '__main__':
     x = 0
     pool = Pool(10)
     for page in range(1, 4):
-        url = 'https://www.dapengjiaoyu.cn/dp-course/api/courses/stages/e5acb4e292b741049ddcc7965f6da466/chapters?courseId=ijmiw8ve&size=16&page=' + \
-            str(page)
+    # page = 1
+    # while True:
+        url = '{}{}'.format(pageUrl,str(page))
         menu = requests.get(url=url, headers=headers, cookies=cookies).json()
         for tmp in menu:
             x += 1  # 计数
             pool.apply_async(download, args=(tmp, x,))
+        # page += 1
     pool.close()
     pool.join()
