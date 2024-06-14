@@ -92,4 +92,9 @@ def merge(tempName, title):
     subprocess.Popen(command, shell=True)
 
 if __name__ == '__main__':
-    download("./index.m3u8","陀螺女孩HD")
+    pageUrl = "http://v6.tlkqc.com/wjv6/202406/14/tbJrFT1LUy78/video/1000k_0X720_64k_25/hls/index.m3u8"
+    fileName = "./index.m3u8"
+    resp = requests.get(url=pageUrl, headers=headers)
+    with open(file=fileName, mode='w') as f:
+        f.write(resp.text)
+    download(fileName,"陀螺女孩HD")
