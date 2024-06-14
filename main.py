@@ -43,13 +43,14 @@ def fetch_content(ts_url, tempName, index):
         else:
             write(tempName, ts_content, index)
 
-def download(filePath, videoName):
+def download(filePath, videoName, host=""):
     print("download->", videoName)
     with open(file=filePath, mode='r') as f:
         m3u8_data = f.read()
-    ts_urls = re.findall('(http.*?\.ts)', m3u8_data)
+    ts_urls = re.findall('(.*?\.ts)', m3u8_data)
     tempName = os.getcwd() + "/temp1/" + videoName
-
+    if host:
+        ts_urls = [f'{host}{url}' for url in ts_urls ]
     with ThreadPoolExecutor(max_workers=10) as executor:
         futures = []
         for index, ts_url in enumerate(ts_urls):
@@ -60,6 +61,8 @@ def download(filePath, videoName):
 
     for index, ts_url in enumerate(ts_urls):
         ts_index = f"{index + 100000}.ts"
+        if host:
+            ts_url = ts_url.replace(host, '')
         m3u8_data = m3u8_data.replace(ts_url, ts_index)
 
     if 'URI' in m3u8_data:
@@ -92,9 +95,11 @@ def merge(tempName, title):
     subprocess.Popen(command, shell=True)
 
 if __name__ == '__main__':
-    pageUrl = "http://v6.tlkqc.com/wjv6/202406/14/tbJrFT1LUy78/video/1000k_0X720_64k_25/hls/index.m3u8"
+    pageUrl = "https://yzzy.play-cdn8.com/20220722/9500_f9e1dfc5/1000k/hls/index.m3u8"
+    host = "https://yzzy.play-cdn8.com/20220722/9500_f9e1dfc5/1000k/hls/"
+    
     fileName = "./index.m3u8"
     resp = requests.get(url=pageUrl, headers=headers)
     with open(file=fileName, mode='w') as f:
         f.write(resp.text)
-    download(fileName,"陀螺女孩HD")
+    download(fileName,"林中小屋",host)
