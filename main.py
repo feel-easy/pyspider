@@ -7,14 +7,7 @@ from time import sleep
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from requests.exceptions import RequestException
 
-cookie = ''
-className = "陀螺女孩HD"
-pageUrl = "http://v6.tlkqc.com/wjv6/202406/14/tbJrFT1LUy78/video/1000k_0X720_64k_25/hls/index.m3u8"
-START = 20
-
 # 处理cookies的方式
-cookies = {}
-cookie = cookie.encode('utf-8').decode('latin1')
 headers = {
     'Accept': '*/*',
     'Accept-Language': 'zh-CN,zh;q=0.9,zh-TW;q=0.8,en;q=0.7,so;q=0.6',
@@ -50,8 +43,7 @@ def fetch_content(ts_url, tempName, index):
         else:
             write(tempName, ts_content, index)
 
-def download(filePath):
-    videoName = className
+def download(filePath, videoName):
     print("download->", videoName)
     with open(file=filePath, mode='r') as f:
         m3u8_data = f.read()
@@ -78,7 +70,7 @@ def download(filePath):
         m3u8_data = m3u8_data.replace(key_url, 'key.m3u8')
 
     write(tempName, m3u8_data)
-    merge(videoName, tempName)
+    merge(tempName, videoName)
     sleep(2)
     print(f'合成完毕: {videoName}')
 
@@ -92,12 +84,12 @@ def write(name, data, index=''):
         with open(f"{name}/{index}", 'wb') as f2:
             f2.write(data)
 
-def merge(title, tempName):
-    savePath = f'{os.getcwd()}/{className}'
+def merge(tempName, title):
+    savePath = f'{os.getcwd()}/{title}'
     if not os.path.exists(savePath):
         os.mkdir(savePath)
     command = f'ffmpeg -allowed_extensions ALL -i "{tempName}/index.m3u8" -c copy {savePath}/{title}.mp4'
     subprocess.Popen(command, shell=True)
 
 if __name__ == '__main__':
-    download("./index.m3u8")
+    download("./index.m3u8","陀螺女孩HD")
