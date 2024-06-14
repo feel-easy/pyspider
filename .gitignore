@@ -1,2 +1,10 @@
-temp_*
+temp1/*
 video
+*.mp4
+
+.git
+.gitignore
+.gitmodules
+.idea
+.vscode
+.DS_Store
